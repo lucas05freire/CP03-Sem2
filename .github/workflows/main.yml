@@ -1,4 +1,4 @@
-name: Provisioning S3 Bucket and updating index.html
+name: Terraform execution
 
 on:
   push:
@@ -6,13 +6,10 @@ on:
     - main
 
 jobs:
-  deploy:
+  job-Terraform:
     runs-on: ubuntu-latest
     steps:
-
-    - name: Checkout repo
-      uses: actions/checkout@v1
-
+    
     - name: Install Terraform
       env:
             TERRAFORM_VERSION: "1.2.9"
@@ -24,6 +21,9 @@ jobs:
     
     - name: Verify Terraform version
       run: terraform --version
+      
+    - name: Checkout repo
+      uses: actions/checkout@v1
 
     - name: Terraform init
       env:
